@@ -4,6 +4,7 @@ from ResidualBlock import ResidualBlock
 
 class ResNet(nn.Module):
     def __init__(self, in_channels, out_channels, batch_size, classes):
+        super().__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=1, padding=1)
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU()
@@ -14,7 +15,6 @@ class ResNet(nn.Module):
         self.block4 = ResidualBlock(4*out_channels, 8*out_channels, stride=2)
 
         self.avg_pooling = nn.AvgPool2d(1,1)
-        self.flatten = nn.Flatten(batch_size, 512)
         self.linear = nn.Linear(512, classes)
 
     def forward(self, x):
@@ -28,5 +28,5 @@ class ResNet(nn.Module):
         x = self.block4(x)
 
         x = self.avg_pooling(x)
-        x = self.flatten(x)
+        x = x[:,:,0,0]
         return self.linear(x)

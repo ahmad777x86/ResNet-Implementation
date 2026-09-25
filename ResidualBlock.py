@@ -14,13 +14,13 @@ class ResidualBlock(nn.Module):
         self.relu = nn.ReLU()
 
         if(in_channels != out_channels or stride != 1):
-            self.projection = nn.Conv2d(in_channels, out_channels, stride=stride, padding=1, bias=False)
+            self.projection = nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride, padding=0, bias=False)
         else:
             self.projection = None
 
     def forward(self, x):
         identity = x
-        if identity is not None:
+        if self.projection is not None:
             identity = self.projection(identity)
 
         x = self.conv1(x)
