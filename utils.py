@@ -1,4 +1,5 @@
 import torch
+import torchvision.transforms as transforms
 
 def eval_step(model, test_loader, criterion, device):
     model.eval()
@@ -27,3 +28,13 @@ def eval_step(model, test_loader, criterion, device):
     test_acc = correct / total * 100
 
     return test_loss, test_acc
+
+def preprocess_image(img):
+    tf = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize(32),
+        transforms.CenterCrop((32,32)),
+        transforms.ToTensor()
+        ])
+    img = tf(img)
+    return img
