@@ -6,9 +6,9 @@ from utils import eval_step
 EPOCHS = 3
 
 train_loader, test_loader = load_data(32)
-model = ResNet(3, 64, batch_size=32, classes=10)
+model = ResNet(3, 64, classes=10)
 criterion = torch.nn.CrossEntropyLoss()
-optim = torch.optim.Adam(params=model.parameters(), lr=0.01)
+optim = torch.optim.Adam(params=model.parameters(), lr=0.001)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Device: {device}")
@@ -38,6 +38,6 @@ for epoch in range(EPOCHS):
     test_loss, test_acc = eval_step(model, test_loader, criterion, device)
     print(f"Test Loss: {test_loss:.4f} | Test Accuracy: {test_acc:.4f}")
 
-
+torch.save(model.state_dict(), 'model.pth')
 
 

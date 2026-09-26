@@ -24,6 +24,6 @@ def eval_step(model, test_loader, criterion, device):
         correct += torch.eq(preds, labels).sum().item()
 
     test_loss = test_loss / total
-    test_acc = correct / total 
+    test_acc = correct / total * 100
 
     return test_loss, test_acc

@@ -3,16 +3,28 @@ import torch.nn as nn
 from ResidualBlock import ResidualBlock
 
 class ResNet(nn.Module):
-    def __init__(self, in_channels, out_channels, batch_size, classes):
+    def __init__(self, in_channels, out_channels, classes):
         super().__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=1, padding=1)
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU()
 
-        self.block1 = ResidualBlock(out_channels, out_channels, stride=1)
-        self.block2 = ResidualBlock(out_channels, 2*out_channels, stride=2)
-        self.block3 = ResidualBlock(2*out_channels, 4*out_channels, stride=2)
-        self.block4 = ResidualBlock(4*out_channels, 8*out_channels, stride=2)
+        self.block1 = nn.Sequential(
+            ResidualBlock(out_channels, out_channels, stride=1),
+            ResidualBlock(out_channels, out_channels, stride=1)
+            )
+        self.block2 = nn.Sequential(
+            ResidualBlock(out_channels, 2*out_channels, stride=2),
+            ResidualBlock(2*out_channels, 2*out_channels, stride=2)
+            )
+        self.block3 = nn.Sequential(
+            ResidualBlock(2*out_channels, 4*out_channels, stride=2),
+            ResidualBlock(4*out_channels, 4*out_channels, stride=2)
+            )
+        self.block4 = nn.Sequential(
+            ResidualBlock(4*out_channels, 8*out_channels, stride=2),
+            ResidualBlock(8*out_channels, 8*out_channels, stride=2)
+            )
 
         self.avg_pooling = nn.AvgPool2d(1,1)
         self.linear = nn.Linear(512, classes)
