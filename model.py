@@ -15,15 +15,15 @@ class ResNet(nn.Module):
             )
         self.block2 = nn.Sequential(
             ResidualBlock(out_channels, 2*out_channels, stride=2),
-            ResidualBlock(2*out_channels, 2*out_channels, stride=2)
+            ResidualBlock(2*out_channels, 2*out_channels, stride=1)
             )
         self.block3 = nn.Sequential(
             ResidualBlock(2*out_channels, 4*out_channels, stride=2),
-            ResidualBlock(4*out_channels, 4*out_channels, stride=2)
+            ResidualBlock(4*out_channels, 4*out_channels, stride=1)
             )
         self.block4 = nn.Sequential(
             ResidualBlock(4*out_channels, 8*out_channels, stride=2),
-            ResidualBlock(8*out_channels, 8*out_channels, stride=2)
+            ResidualBlock(8*out_channels, 8*out_channels, stride=1)
             )
 
         self.avg_pooling = nn.AvgPool2d(1,1)
