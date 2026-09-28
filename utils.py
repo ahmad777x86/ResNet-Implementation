@@ -30,7 +30,7 @@ def eval_step(model, test_loader, criterion, device):
 
     return test_loss, test_acc
 
-def preprocess_image(img):
+def preprocess_image(img, device):
     tf = transforms.Compose([
         transforms.ToPILImage(),
         transforms.Resize(32),
@@ -38,4 +38,4 @@ def preprocess_image(img):
         transforms.ToTensor()
         ])
     img = tf(img)
-    return img
+    return img.to(device)
