@@ -31,11 +31,19 @@ def eval_step(model, test_loader, criterion, device):
     return test_loss, test_acc
 
 def preprocess_image(img, device):
-    tf = transforms.Compose([
-        transforms.ToPILImage(),
-        transforms.Resize(32),
-        transforms.CenterCrop((32,32)),
-        transforms.ToTensor()
+    try: 
+        tf = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize(32),
+            transforms.CenterCrop((32,32)),
+            transforms.ToTensor()
+            ])
+        img = tf(img)
+    except:
+        tf = transforms.Compose([
+            transforms.Resize(32),
+            transforms.CenterCrop((32,32)),
+            transforms.ToTensor()
         ])
-    img = tf(img)
+        img = tf(img)
     return img.to(device)
