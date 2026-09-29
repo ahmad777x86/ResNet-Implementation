@@ -41,7 +41,19 @@ def predict(img):
 
     return {"Class" : CLASSES[class_idx], "Confidence" : conf_str}
 
-app = gr.Interface(predict, inputs=gr.Image(type='pil'), outputs=gr.JSON())
+app = gr.Interface(
+    predict, 
+    inputs=gr.Image(type='pil'), 
+    outputs=gr.JSON(),
+    title="Resnet-18 CIFAR Classifier", 
+    description="#### Description: Trained on cifar-10 and may classify images of Airplanes, Cars, Trucks, Ship, Cats, Dogs, Deer, Frogs, Horse, Birds.",
+    article= "Simply choose one of the above images or upload your own image and click submit, and the output prediction shall appear!",
+    examples=['Test Images/airplane1.jpg', 'Test Images/car1.jpg', 'Test Images/deer1.jpg']
+)
 
-app.launch(inbrowser=True, ssr_mode=False)
+app.launch(
+    inbrowser=True, 
+    ssr_mode=False,
+    theme=gr.themes.Soft()
+)
 
