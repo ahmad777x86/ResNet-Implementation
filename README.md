@@ -8,7 +8,7 @@ Trained a resnet-18 based architecure model on cifar-10 dataset with custom Resi
 
 Below is a visual of the model's architecture:
 
-<img src="Resnet_architecture.png" width="25%" alt="My Image">
+<img src="./Resnet_architecture.png" width="25%" alt="My Image">
 
 The residual blocks in the diagram have the following structure within them:
 - 2 Convolution layers
