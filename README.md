@@ -22,7 +22,16 @@ Skip connection here means that data skips passing through some layers and gets 
 
 ## Deployed App
 
-Try out the model here:
+Run locally:
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Launch local Gradio interface
+python app.py
+```
+
+HuggingFace Space:
 
 <a href="https://huggingface.com/spaces/ahmad-777/ResNet-Implementation"><img src="https://img.shields.io/badge/HuggingFace-ahmad--777%2FResNet--Implementation-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face Space"/></a>
 
