@@ -1,3 +1,9 @@
+# to avoid build errors
+import os
+import sys
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 import gradio as gr
 import torch
 from utils import preprocess_image
