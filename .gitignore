@@ -2,3 +2,6 @@
 data/
 *.pyc
 .vscode/
+build/
+*.spec
+dist/
