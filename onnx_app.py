@@ -1,5 +1,15 @@
-import gradio as gr
+import faulthandler
+faulthandler.enable()
+
 import onnxruntime as ort
+
+import sys 
+import os
+
+sys.stdout.reconfigure(line_buffering=True)
+sys.stderr.reconfigure(line_buffering=True)
+
+import gradio as gr
 import numpy as np
 from PIL import Image
 
