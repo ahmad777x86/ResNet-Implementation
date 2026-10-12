@@ -39,5 +39,8 @@ if __name__ == "__main__":
         print(f"Test Loss: {test_loss:.4f} | Test Accuracy: {test_acc:.4f}")
 
     torch.save(model.state_dict(), 'model.pth')
-
+    model.eval()
+    model = model.to(torch.device('cpu'))
+    dummy = torch.randn(1,3, 32, 32)
+    torch.onnx.export(model, dummy, "model.onnx", input_names=['input'], output_names=['output'], dynamo=False, opset_version=17)
 
