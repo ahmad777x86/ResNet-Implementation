@@ -55,7 +55,7 @@ Skip connection here means that data skips passing through some layers and gets 
 
 > [!NOTE]
 > Triton on WSL or Linux is only required if you want to optimise the model to extreme with JIT Compilation. 
-> ONNX runtime is only required if you want to utilise onnx based inference. 
+> ONNX runtime is only required if you want to utilise onnx model export. 
 > I don't recommend creating another exe as it is a very hectic task and you may need to deal `pyinstaller` and write manual hooks to ensure no raw memory collision occurs. 
 
 ### Run locally:
