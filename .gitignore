@@ -8,3 +8,4 @@ build/
 dist/
 build_env/
 hook_early_onnx.py
+onnx_app.py
